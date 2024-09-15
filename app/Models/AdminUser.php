@@ -48,4 +48,8 @@ class AdminUser extends Model
 
         return $this->where($map)->first();
     }
+
+    public function find_all() {
+        return $this->all();
+    }
 }
