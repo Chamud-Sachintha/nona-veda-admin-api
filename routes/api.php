@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +26,7 @@ Route::post('login', [AuthController::class, 'authenticateAdminUser']);
 Route::middleware('authToken')->post('get-admin-users', [AdminUserController::class, 'getAllAdminUserList']);
 Route::middleware('authToken')->post('add-new-question', [QuestionController::class, 'addNewQuestion']);
 Route::middleware('authToken')->post('get-question-list', [QuestionController::class, 'getAllQuestions']);
+Route::middleware('authToken')->post('get-results', [QuestionController::class, 'getSAllClientResponses']);
+Route::middleware('authToken')->post('get-dashboard-data', [DashboardController::class, 'getDashboardStatsInfo']);
+Route::middleware('authToken')->post('get-question-by-id', [QuestionController::class, 'getQuestionInfoById']);
+Route::middleware('authToken')->post('update-question-by-id', [QuestionController::class, 'updateQuestionById']);

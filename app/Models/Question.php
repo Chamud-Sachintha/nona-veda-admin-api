@@ -28,4 +28,19 @@ class Question extends Model
     public function find_all() {
         return $this->all();
     }
+
+    public function find_by_id($questionId) {
+        $map['id'] = $questionId;
+
+        return $this->where($map)->first();
+    }
+
+    public function update_by_id($info, $id) {
+        $map['id'] = $id;
+        $map1['question_name'] = $info['questionName'];
+        $map1['category'] = $info['categoryType'];
+        $map1['answers'] = $info['answersList'];
+
+        return $this->where($map)->update($map1);
+    }
 }

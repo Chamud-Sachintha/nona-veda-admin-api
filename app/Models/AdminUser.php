@@ -52,4 +52,8 @@ class AdminUser extends Model
     public function find_all() {
         return $this->all();
     }
+
+    public function count_all() {
+        return $this->count();
+    }
 }
