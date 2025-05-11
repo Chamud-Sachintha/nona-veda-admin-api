@@ -30,3 +30,4 @@ Route::middleware('authToken')->post('get-results', [QuestionController::class, 
 Route::middleware('authToken')->post('get-dashboard-data', [DashboardController::class, 'getDashboardStatsInfo']);
 Route::middleware('authToken')->post('get-question-by-id', [QuestionController::class, 'getQuestionInfoById']);
 Route::middleware('authToken')->post('update-question-by-id', [QuestionController::class, 'updateQuestionById']);
+Route::middleware('authToken')->post('delete-question-by-id', [QuestionController::class, 'deleteQuestionById']);

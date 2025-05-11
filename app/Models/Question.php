@@ -43,4 +43,10 @@ class Question extends Model
 
         return $this->where($map)->update($map1);
     }
+
+    public function delete_by_id($id) {
+        $map['id'] = $id;
+
+        return $this->where($map)->delete();
+    }
 }

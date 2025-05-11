@@ -126,7 +126,19 @@ class QuestionController extends Controller
             return $this->AppHelper->responseMessageHandle(0, "Question ID is required.");
         } else {
             try {
+                $question = $this->QuestionModel->find_by_id($questionId);
 
+                if ($question) {
+                    $delete_question = $this->QuestionModel->delete_by_id($questionId);
+
+                    if ($delete_question) {
+                        return $this->AppHelper->responseMessageHandle(1, "Operation Successfully");
+                    } else {
+                        return $this->AppHelper->responseMessageHandle(0, "Error Occured");
+                    }
+                } else {
+                    return $this->AppHelper->responseMessageHandle(0, "Invalid Question Id");
+                }
             } catch (Exception $e) {
                 return $this->AppHelper->responseMessageHandle(0, "Error Occured " . $e->getMessage());
             }
@@ -141,6 +153,9 @@ class QuestionController extends Controller
         foreach ($question_list as $key => $value) {
             $formated_list[$key]['id'] = $value['id'];
             $formated_list[$key]['quistionName'] = $value['question_name'];
+
+            
+
             $formated_list[$key]['quiestionCategoryType'] = $value['category'];
             $formated_list[$key]['questionAnswer'] = $value['answers'];
             $formated_list[$key]['createTime'] = $value['create_time'];
